@@ -2,7 +2,6 @@ package io.devcrew.mvvmdatabinding.dataModel;
 
 import android.os.Handler;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import io.devcrew.mvvmdatabinding.model.Todo;
@@ -16,23 +15,19 @@ import io.realm.RealmResults;
 
 public class TodoDataModel {
 
-    private UserDataListener mUserDataListener;
+    private TodoDataListener mTodoDataListener;
 
-    public TodoDataModel(UserDataListener listener) {
-        mUserDataListener = listener;
+    public TodoDataModel(TodoDataListener listener) {
+        mTodoDataListener = listener;
     }
 
     public void saveUser(final Todo todo) {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                Realm realm = Realm.getDefaultInstance();
-                realm.beginTransaction();
-                realm.copyToRealm(todo);
-                realm.commitTransaction();
-                mUserDataListener.onSaveUser();
-            }
-        }, 2000);//We add delay for making it async task example
+
+        Realm realm = Realm.getDefaultInstance();
+        realm.beginTransaction();
+        realm.copyToRealm(todo);
+        realm.commitTransaction();
+        mTodoDataListener.onSaveUser();
     }
 
     public void getAllTodos() {
@@ -40,24 +35,25 @@ public class TodoDataModel {
         Realm realm = Realm.getDefaultInstance();
         RealmQuery<Todo> query = realm.where(Todo.class);
         RealmResults<Todo> resultTodos = query.findAll();
-        mUserDataListener.onTodoListFetched(resultTodos);
+        mTodoDataListener.onTodoListFetched(resultTodos);
 
     }
 
-    public void completeTodo (final Todo todo){
+    public void completeTodo(final Todo todo) {
 
         Realm realm = Realm.getDefaultInstance();
         realm.executeTransaction(new Realm.Transaction() {
             @Override
             public void execute(Realm realm) {
-                Todo todoItem = realm.where(Todo.class).equalTo("description",todo.getDescription()).findFirst();
+                Todo todoItem = realm.where(Todo.class).equalTo("description", todo.getDescription()).findFirst();
                 todoItem.setStatus(true);
             }
         });
     }
 
-    public interface UserDataListener {
+    public interface TodoDataListener {
         void onSaveUser();
+
         void onTodoListFetched(List<Todo> todoList);
     }
 }

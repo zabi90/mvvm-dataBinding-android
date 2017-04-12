@@ -7,7 +7,6 @@ import android.databinding.ObservableInt;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +20,7 @@ import io.devcrew.mvvmdatabinding.view.MainActivity;
  * Created by zohaib on 12/04/2017.
  */
 
-public class TodoListViewModel  implements IViewModel,TodoDataModel.UserDataListener, TodoListAdapter.TodoCompleteListener {
+public class TodoListViewModel  implements IViewModel,TodoDataModel.TodoDataListener, TodoListAdapter.TodoCompleteListener {
 
     private Context mContext;
     private Activity mActivity;

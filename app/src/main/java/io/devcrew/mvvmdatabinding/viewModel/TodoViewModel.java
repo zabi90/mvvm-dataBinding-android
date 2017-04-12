@@ -13,14 +13,12 @@ import java.util.List;
 
 import io.devcrew.mvvmdatabinding.dataModel.TodoDataModel;
 import io.devcrew.mvvmdatabinding.model.Todo;
-import io.devcrew.mvvmdatabinding.view.MainActivity;
-import io.devcrew.mvvmdatabinding.view.TodoListActivity;
 
 /**
  * Created by zohaib on 12/04/2017.
  */
 
-public class TodoViewModel implements IViewModel,TodoDataModel.UserDataListener{
+public class TodoViewModel implements IViewModel,TodoDataModel.TodoDataListener {
 
     public Context mContext;
     public ObservableField<String> description;

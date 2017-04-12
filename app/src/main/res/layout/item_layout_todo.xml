@@ -10,18 +10,19 @@
 </data>
 <LinearLayout
     android:id="@+id/rootLayout"
+    android:layout_margin="5dp"
     android:orientation="horizontal" android:layout_width="match_parent"
     android:layout_height="50dp">
     <TextView
         android:layout_width="0dp"
         android:layout_weight="1"
         android:maxLines="1"
-        android:text="@{todoItemViewModel.description}"
+        android:text="@{todoItemViewModel.description, default = Todo}"
         android:layout_height="wrap_content" />
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@{ todoItemViewModel.status ? @string/completed :  @string/done }"
+        android:text="@{ todoItemViewModel.status ? @string/completed :  @string/done , default = DONE }"
         android:onClick="@{()->todoCompleteListener.onDone(todoItemViewModel.mTodo)}"
         />
 </LinearLayout>
