@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout  xmlns:android="http://schemas.android.com/apk/res/android">
+<data>
+    <variable
+        name="todoItemViewModel"
+        type="io.devcrew.mvvmdatabinding.viewModel.TodoItemViewModel"/>
+    <variable
+        name="todoCompleteListener"
+        type="io.devcrew.mvvmdatabinding.adapters.TodoListAdapter.TodoCompleteListener"/>
+</data>
+<LinearLayout
+    android:id="@+id/rootLayout"
+    android:orientation="horizontal" android:layout_width="match_parent"
+    android:layout_height="50dp">
+    <TextView
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:maxLines="1"
+        android:text="@{todoItemViewModel.description}"
+        android:layout_height="wrap_content" />
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@{ todoItemViewModel.status ? @string/completed :  @string/done }"
+        android:onClick="@{()->todoCompleteListener.onDone(todoItemViewModel.mTodo)}"
+        />
+</LinearLayout>
+
+</layout>
