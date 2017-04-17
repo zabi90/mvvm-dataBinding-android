@@ -65,5 +65,6 @@ public class TodoListAdapter extends RecyclerView.Adapter<TodoListAdapter.Bindin
 
     public interface TodoCompleteListener{
         void onDone(Todo todo);
+        void onViewDetail(Todo todo);
     }
 }

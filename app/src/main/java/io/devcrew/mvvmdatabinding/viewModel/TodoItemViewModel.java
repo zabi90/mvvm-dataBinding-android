@@ -27,4 +27,6 @@ public class TodoItemViewModel extends BaseObservable {
         return mTodo.isStatus();
     }
 
+
+
 }

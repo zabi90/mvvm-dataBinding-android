@@ -15,6 +15,7 @@ import io.devcrew.mvvmdatabinding.adapters.TodoListAdapter;
 import io.devcrew.mvvmdatabinding.dataModel.TodoDataModel;
 import io.devcrew.mvvmdatabinding.model.Todo;
 import io.devcrew.mvvmdatabinding.view.MainActivity;
+import io.devcrew.mvvmdatabinding.view.TodoDetailActivity;
 
 /**
  * Created by zohaib on 12/04/2017.
@@ -96,5 +97,12 @@ public class TodoListViewModel  implements IViewModel,TodoDataModel.TodoDataList
     public void onDone(Todo todo) {
         mTodoDataModel.completeTodo(todo);
         mTodoDataModel.getAllTodos();
+    }
+
+    @Override
+    public void onViewDetail(Todo todo) {
+        Intent todoDetail = new Intent(mActivity, TodoDetailActivity.class);
+        todoDetail.putExtra(Todo.TODO,todo);
+        mActivity.startActivity(todoDetail);
     }
 }

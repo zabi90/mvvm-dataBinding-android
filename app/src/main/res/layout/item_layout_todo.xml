@@ -17,6 +17,7 @@
         android:layout_width="0dp"
         android:layout_weight="1"
         android:maxLines="1"
+        android:onClick="@{() -> todoCompleteListener.onViewDetail(todoItemViewModel.mTodo) }"
         android:text="@{todoItemViewModel.description, default = Todo}"
         android:layout_height="wrap_content" />
     <Button
